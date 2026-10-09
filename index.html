@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101018">
+  <meta name="description" content="GCVERSE — Your GC. But playable. Games, confessions and group memories in one place.">
+  <title>GCVERSE — Your GC. But Playable.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script type="module" src="script.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <section id="authView" class="auth-layout">
+    <div class="auth-showcase">
+      <a class="brand brand-large" href="#" aria-label="GCVERSE"><span class="brand-symbol">✦</span><span>GC<span class="brand-accent">VERSE</span></span></a>
+      <div class="auth-showcase-copy">
+        <span class="eyebrow"><span class="pulse-dot"></span> YOUR PEOPLE. YOUR UNIVERSE.</span>
+        <h1>Your GC.<br><span class="gradient-text">But playable.</span></h1>
+        <p>Turn your group chats into a place to play, compete, confess, and make stories you'll keep bringing up.</p>
+        <div class="showcase-pills"><span>🎭 Truth & Dare</span><span>🚩 Red Flag Detector</span><span>🎲 Random Challenge</span></div>
+      </div>
+      <div class="showcase-bottom"><span class="showcase-ring ring-one"></span><span class="showcase-ring ring-two"></span><div class="showcase-mini-card"><span class="mini-card-icon">🎲</span><div><b>ROUND 02 / 04</b><span>One challenge. Your whole GC.</span></div><span class="mini-status">READY</span></div></div>
+    </div>
+    <div class="auth-panel-wrap">
+      <div class="auth-panel">
+        <div class="auth-panel-heading"><span class="eyebrow">WELCOME TO GCVERSE</span><h2>Sign in to your world.</h2><p>Your GCs, games and profile stay connected to your account.</p></div>
+        <form id="authForm" class="auth-form">
+          <label for="authName">Display name <span class="label-note">For new accounts</span></label><input id="authName" name="name" autocomplete="nickname" placeholder="What should friends call you?" required maxlength="24">
+          <label for="authEmail">Email address</label><input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <label for="authPassword">Password <span class="label-note">Firebase Auth</span></label><input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="At least 6 characters" minlength="6" required>
+          <button class="btn btn-primary btn-full" type="submit">Continue to GCVERSE <i data-lucide="arrow-up-right"></i></button>
+        </form>
+        <div class="auth-divider"><span></span><small>OR</small><span></span></div>
+        <button id="googlePreviewButton" class="btn btn-secondary btn-full" type="button"><span class="google-g">G</span> Continue with Google</button>
+        <p class="auth-footnote"><i data-lucide="shield-check"></i> Your account and app data sync with Firebase. Never share your password or service-account keys.</p>
+        <div class="auth-preview-row"><span class="status-dot"></span> Secure sign-in · cloud sync <button id="resetDemoButton" type="button" class="text-link">Clear local cache</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-top"><a class="brand" href="#home" data-nav="home"><span class="brand-symbol">✦</span><span>GC<span class="brand-accent">VERSE</span></span></a><button id="sidebarCollapse" class="icon-button sidebar-collapse" aria-label="Collapse sidebar"><i data-lucide="panel-left-close"></i></button></div>
+      <div class="workspace-switcher"><div class="workspace-avatar">G</div><div class="workspace-meta"><strong>Personal space</strong><span>GCVERSE universe</span></div><i data-lucide="chevrons-up-down"></i></div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <span class="nav-label">WORKSPACE</span>
+        <button class="side-link active" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+        <button class="side-link" data-nav="games"><i data-lucide="gamepad-2"></i><span>Games</span><span class="nav-count">6</span></button>
+        <button class="side-link" data-nav="confessions"><i data-lucide="message-circle-heart"></i><span>Confessions</span></button>
+        <button class="side-link" data-nav="leaderboard"><i data-lucide="trophy"></i><span>Leaderboards</span></button>
+        <div class="nav-divider"></div><span class="nav-label">YOUR GROUPS <span id="sidebarGcCount">0</span></span>
+        <div id="sidebarGcList" class="sidebar-gc-list"></div>
+        <button class="side-link side-create" data-action="create-gc"><i data-lucide="plus-circle"></i><span>Create a GC</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-tip"><span class="tip-icon">✦</span><div><strong>Built for your people</strong><span>Pick a game. Make a memory.</span></div></div><button class="side-link" data-nav="profile"><i data-lucide="user-round"></i><span>Profile & settings</span></button><button id="signOutButton" class="side-link"><i data-lucide="log-out"></i><span>Sign out</span></button></div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar"><div class="topbar-left"><button id="mobileMenuButton" class="icon-button mobile-menu-toggle" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="breadcrumb"><span>GCVERSE</span><i data-lucide="chevron-right"></i><strong id="breadcrumbCurrent">Dashboard</strong></div></div><div class="topbar-actions"><button class="icon-button" data-nav="confessions" aria-label="Open confessions"><i data-lucide="message-circle"></i></button><button class="icon-button" data-nav="leaderboard" aria-label="Open leaderboard"><i data-lucide="trophy"></i></button><button class="profile-trigger" data-nav="profile"><span id="topbarAvatar" class="avatar avatar-small">V</span><span id="topbarName">Virat</span><i data-lucide="chevron-down"></i></button></div></header>
+      <main id="pageView" class="page-view" tabindex="-1"></main>
+      <footer class="app-footer"><span>✦ GCVERSE</span><span>Your GC. But playable.</span><button data-action="show-about">About this preview</button></footer>
+    </div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><button class="active" data-nav="home"><i data-lucide="house"></i><span>Home</span></button><button data-nav="games"><i data-lucide="gamepad-2"></i><span>Games</span></button><button data-nav="confessions"><i data-lucide="message-circle-heart"></i><span>Confess</span></button><button data-nav="leaderboard"><i data-lucide="trophy"></i><span>Ranks</span></button><button data-nav="profile"><i data-lucide="circle-user-round"></i><span>Profile</span></button></nav>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay" aria-hidden="true"><section id="modalDialog" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="modalClose" class="icon-button modal-close" aria-label="Close dialog"><i data-lucide="x"></i></button><div id="modalContent"></div></section></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"><span id="toastIcon">✦</span><span id="toastMessage">Done</span></div>
+</body>
+</html>
